@@ -21,7 +21,9 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "craco eject"
+    "eject": "craco eject",
+    "lint:fix": "eslint \"src/**/*.{ts,tsx,js,jsx}\" --fix",
+    "format": "prettier --write --ignore-path .gitignore \"src/**/*.{ts,tsx,js,jsx,json,css,scss}\""
   },
   "eslintConfig": {
     "extends": [
