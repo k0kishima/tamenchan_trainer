@@ -5,16 +5,16 @@
   "dependencies": {
     "@testing-library/jest-dom": "5.16.4",
     "@testing-library/react": "13.3.0",
-    "@testing-library/user-event": "14.2.0",
-    "@types/jest": "28.1.1",
-    "@types/node": "16.11.38",
-    "@types/react": "18.0.10",
+    "@testing-library/user-event": "14.2.1",
+    "@types/jest": "28.1.2",
+    "@types/node": "16.11.41",
+    "@types/react": "18.0.14",
     "@types/react-dom": "17.0.17",
     "craco": "^0.0.3",
-    "react": "18.1.0",
-    "react-dom": "18.1.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "react-scripts": "4.0.3",
-    "typescript": "4.7.2",
+    "typescript": "4.7.4",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
@@ -44,8 +44,8 @@
     ]
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "5.27.0",
+    "@typescript-eslint/eslint-plugin": "5.28.0",
     "eslint-config-prettier": "8.5.0",
-    "prettier": "2.6.2"
+    "prettier": "2.7.1"
   }
 }
