@@ -20,8 +20,8 @@ export const Hand: React.FC = () => {
     <Styled>
       <div className='tile-container'>
         {([1, 1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 9] as TileNumber[]).map(
-          (number) => (
-            <Tile color='m' number={number} key={number} />
+          (number, i) => (
+            <Tile color='m' number={number} key={i} />
           )
         )}
       </div>

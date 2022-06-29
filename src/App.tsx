@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { Board } from '@/features/game';
+import { Game } from '@/features/game';
 
 function App() {
-  return <Board />;
+  return <Game />;
 }
 
 export default App;
