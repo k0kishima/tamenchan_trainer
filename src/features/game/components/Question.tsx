@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { GameContext } from '@/contexts/Game';
 import { ALL_TILE_NUMBERS } from '@/types';
 import { Tile } from './Tile';
 
@@ -9,6 +10,7 @@ type Props = {
 
 export const Question: React.FC<Props> = ({ answer }: Props) => {
   const [selectedNumbers, setSelectedNumbers] = useState<number[]>([]);
+  const { tileColor } = useContext(GameContext);
 
   useEffect(() => {
     answer(selectedNumbers);
@@ -53,7 +55,7 @@ export const Question: React.FC<Props> = ({ answer }: Props) => {
           onClick={() => toggleSelectedNumbers(number)}
           key={i}
         >
-          <Tile color='m' number={number} key={i} />
+          <Tile color={tileColor} number={number} key={i} />
         </span>
       ))}
     </Styled>

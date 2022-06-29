@@ -34,7 +34,7 @@ export const Game: React.FC = () => {
   `;
 
   const answer = (numbers: number[]): void => {
-    if (parseInt(numbers.join('')) === machi) {
+    if (parseInt(numbers.sort().join('')) === machi) {
       close();
     }
   };
