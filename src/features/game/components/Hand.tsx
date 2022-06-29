@@ -3,7 +3,11 @@ import styled from 'styled-components';
 import { Tile } from './Tile';
 import { TileNumber } from '@/types';
 
-export const Hand: React.FC = () => {
+type Props = {
+  number: number;
+};
+
+export const Hand: React.FC<Props> = ({ number }: Props) => {
   const Styled = styled.div`
     .tile-container {
       display: flex;
@@ -19,11 +23,11 @@ export const Hand: React.FC = () => {
   return (
     <Styled>
       <div className='tile-container'>
-        {([1, 1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 9] as TileNumber[]).map(
-          (number, i) => (
-            <Tile color='m' number={number} key={i} />
-          )
-        )}
+        {(
+          Array.from(String(number)).map((n) => parseInt(n)) as TileNumber[]
+        ).map((n, i) => (
+          <Tile color='m' number={n} key={i} />
+        ))}
       </div>
     </Styled>
   );

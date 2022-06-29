@@ -3,10 +3,16 @@ import styled from 'styled-components';
 import { useModal } from 'react-hooks-use-modal';
 import { Board } from './Board';
 import { Hand } from './Hand';
+import { Question } from './Question';
+import { chooseQuestions } from '@/utils/question';
+
+// TODO: implement this.
+const [hand, machi] = chooseQuestions(2)[0];
 
 export const Game: React.FC = () => {
   const [Modal, open, close, isOpen] = useModal('root', {
     preventScroll: true,
+    closeOnOverlayClick: false,
   });
 
   const Styled = styled.div`
@@ -16,30 +22,38 @@ export const Game: React.FC = () => {
       height: 100%;
     }
 
-    .hand {
+    .board-container .hand {
       position: absolute;
       bottom: 0;
       width: 100%;
     }
+
+    .modal-container {
+      height: 100%;
+    }
   `;
+
+  const answer = (numbers: number[]): void => {
+    if (parseInt(numbers.join('')) === machi) {
+      close();
+    }
+  };
 
   return (
     <Styled>
       <div className='board-container' onClick={open}>
         <Board>
           <div className='hand'>
-            <Hand />
+            <Hand number={hand} />
           </div>
         </Board>
       </div>
 
-      <Modal>
-        <div>
-          <h1>Title</h1>
-          <p>This is a customizable modal.</p>
-          <button onClick={close}>CLOSE</button>
-        </div>
-      </Modal>
+      <div className='modal-container'>
+        <Modal>
+          <Question answer={answer} />
+        </Modal>
+      </div>
     </Styled>
   );
 };
