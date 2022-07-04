@@ -29,6 +29,9 @@ export const Question: React.FC<Props> = ({ answer }: Props) => {
       padding: 0px;
     }
     .selected {
+      opacity: 1;
+    }
+    .unselected {
       opacity: 0.5;
     }
     img {
@@ -50,7 +53,7 @@ export const Question: React.FC<Props> = ({ answer }: Props) => {
       {ALL_TILE_NUMBERS.map((number, i) => (
         <span
           className={`tile-container ${
-            selectedNumbers.includes(number) ? 'selected' : ''
+            selectedNumbers.includes(number) ? 'selected' : 'unselected'
           }`}
           onClick={() => toggleSelectedNumbers(number)}
           key={i}
