@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useModal } from 'react-hooks-use-modal';
 import { Board } from './Board';
@@ -25,24 +25,9 @@ export const Game: React.FC = () => {
     closeOnOverlayClick: false,
   });
   const { questions } = useContext(GameContext);
-
-  const Styled = styled.div`
-    height: 100%;
-
-    .board-container {
-      height: 100%;
-    }
-
-    .board-container .hand {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-    }
-
-    .modal-container {
-      height: 100%;
-    }
-  `;
+  useEffect(() => {
+    openQuestionModal();
+  }, []);
 
   const [hand, machi] = questions[progress];
 
@@ -54,12 +39,15 @@ export const Game: React.FC = () => {
         openCheckModal();
         await delay(2000);
         closeCheckModal();
-      })();
-      setProgress(progress + 1);
 
-      if (questions.length === progress) {
-        // TODO: ここで完了画面に遷移させる
-      }
+        setProgress(progress + 1);
+
+        if (questions.length > progress) {
+          openQuestionModal();
+        } else {
+          // TODO: ここで完了画面に遷移させる
+        }
+      })();
     }
   };
 
@@ -89,3 +77,22 @@ export const Game: React.FC = () => {
     </>
   );
 };
+
+const Styled = styled.div`
+  height: 100%;
+
+  .board-container {
+    height: 100%;
+  }
+
+  .board-container .hand {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 9999;
+  }
+
+  .modal-container {
+    height: 100%;
+  }
+`;
