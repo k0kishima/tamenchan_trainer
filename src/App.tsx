@@ -1,26 +1,23 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import logo from '@/logo.svg';
-import '@/App.css';
+import { Game } from '@/features/game';
+import { GameResult } from '@/features/check';
+import { GameContext } from '@/contexts/Game';
+import { chooseQuestions } from '@/utils/question';
+
+const questions = chooseQuestions(2);
 
 function App() {
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <img src={logo} className='App-logo' alt='logo' />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className='App-link'
-          href='https://reactjs.org'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <GameContext.Provider value={{ tileColor: 'm', questions: questions }}>
+      <BrowserRouter>
+        <Routes>
+          <Route path={`/`} element={<Game />} />
+          <Route path={`/result`} element={<GameResult />} />
+        </Routes>
+      </BrowserRouter>
+    </GameContext.Provider>
   );
 }
 
