@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useModal } from 'react-hooks-use-modal';
+import { useNavigate } from 'react-router-dom';
+
 import { Board } from './Board';
 import { Hand } from './Hand';
 import { Question } from './Question';
@@ -12,6 +14,7 @@ const delay = (ms: number) => {
 };
 
 export const Game: React.FC = () => {
+  const navigate = useNavigate();
   const [progress, setProgress] = useState<number>(0);
   const [QuestionModal, openQuestionModal, closeQuestionModal] = useModal(
     'root',
@@ -29,8 +32,6 @@ export const Game: React.FC = () => {
     openQuestionModal();
   }, []);
 
-  const [hand, machi] = questions[progress];
-
   const answer = (numbers: number[]): void => {
     if (parseInt(numbers.sort().join('')) === machi) {
       closeQuestionModal();
@@ -40,17 +41,18 @@ export const Game: React.FC = () => {
         await delay(2000);
         closeCheckModal();
 
-        setProgress(progress + 1);
-
-        if (questions.length > progress) {
+        const newProgress = progress + 1;
+        if (questions.length > newProgress) {
+          setProgress(newProgress);
           openQuestionModal();
         } else {
-          // TODO: ここで完了画面に遷移させる
+          navigate('/result', { replace: true });
         }
       })();
     }
   };
 
+  const [hand, machi] = questions[progress];
   return (
     <>
       {hand && (
