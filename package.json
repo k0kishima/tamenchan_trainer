@@ -25,6 +25,7 @@
   },
   "scripts": {
     "start": "craco start",
+    "start:prod": "craco build && serve -s ./build",
     "build": "craco build",
     "test": "craco test",
     "eject": "craco eject",
