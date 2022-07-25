@@ -18,12 +18,14 @@
     "react-lottie": "^1.2.3",
     "react-router-dom": "^6.3.0",
     "react-scripts": "4.0.3",
+    "serve": "^14.0.1",
     "styled-components": "^5.3.5",
     "typescript": "4.7.4",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
     "start": "craco start",
+    "start:prod": "craco build && serve -s ./build",
     "build": "craco build",
     "test": "craco test",
     "eject": "craco eject",
